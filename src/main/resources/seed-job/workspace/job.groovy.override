@@ -1,0 +1,9 @@
+job('hello-world') {
+    description 'simple Hello World job, should be overriden by a volume'
+    steps {
+          shell 'echo Hello World!'
+    }
+    triggers {
+        cron '* * * * *'
+    }
+}
