@@ -1,25 +1,16 @@
 plugins {
-    id("com.lovelysystems.gradle") version ("0.0.6")
+    id("com.lovelysystems.gradle") version ("1.1.0")
 }
 
 lovely {
     gitProject()
-    dockerProject("lovelysystems/jenkins")
+    dockerProject("lovelysystems/docker-jenkins")
     with(dockerFiles) {
-        from("src/main/resources")
-        from("localdev/Dockerfile") 
+        from("docker") 
     }
 }
 
 group = "com.lovelysystems"
-
-repositories {
-    jcenter()
-    mavenCentral()
-    maven {
-        setUrl("https://dl.bintray.com/kotlin/ktor")
-    }
-}
 
 tasks {
 

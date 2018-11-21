@@ -1,5 +1,5 @@
 job('hello-world') {
-    description 'simple Hello World job, should be overriden by a volume'
+    description 'simple Hello World job, should be overriden'
     steps {
           shell 'echo Hello World!'
     }
