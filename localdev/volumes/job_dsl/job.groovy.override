@@ -5,9 +5,33 @@ job('hello-world') {
         sshAgent('ssh-credentials')
     }
     steps {
-          shell 'echo Hello World!'
+          shell 'docker run hello-world'
     }
     triggers {
         cron '* * * * *'
+    }
+}
+
+pipelineJob('pipeline-test') {
+    definition {
+        cps {
+            sandbox(true)
+            script("""
+                pipeline {
+                   agent {
+                       docker {
+                           image 'alpine'
+                       }
+                   }
+                   stages {
+                       stage('Build') {
+                           steps {
+                               sh 'echo Hello World!'
+                           }
+                       }
+                   }
+                }
+            """.stripIndent()) 
+         }
     }
 }
