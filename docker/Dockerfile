@@ -24,11 +24,15 @@ USER root
 RUN apk --update add curl sudo \
     && mkdir -p /tmp/download \
     && curl -L $DOWNLOAD_URL | tar -xz -C /tmp/download \
-    && mv /tmp/download/docker/docker /usr/local/bin/ \
-    && echo "jenkins ALL=NOPASSWD: /usr/local/bin/docker" > /etc/sudoers.d/docker \
+    && mkdir /opt \
+    && mv /tmp/download/docker/docker /opt/ \
+    && echo "jenkins ALL=NOPASSWD: /opt/docker" > /etc/sudoers.d/docker \
     && chmod 0440 /etc/sudoers.d/docker \
     && rm -rf /tmp/download \
     && rm -rf /var/cache/apk/*
+
+# Create docker shim
+COPY docker /usr/local/bin/docker
 
 USER jenkins
 
@@ -36,11 +40,11 @@ USER jenkins
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
-# Configure Git
-RUN \
-  git config --global push.default simple && \
-  git config --global user.name "Jenkins" && \
-  git config --global user.email jenkins@example.com
+
+# Configure git
+RUN git config --global push.default simple \
+    && git config --global user.name "Jenkins" \
+    && git config --global user.email jenkins@example.com
 
 # Copy files needed in the container
 COPY init.groovy.d/* /usr/share/jenkins/ref/init.groovy.d/
