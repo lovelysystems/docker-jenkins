@@ -16,7 +16,11 @@ services:
       - ./volumes/job_dsl:/usr/share/jenkins/ref/jobs/seed-job/workspace:ro
     secrets:
       - jenkins_ssh_key
+      - source: jenkins_ssh_known_hosts
+        target: /etc/ssh/ssh_known_hosts
 
 secrets:
   jenkins_ssh_key:
     file: .ssh/id
+  jenkins_ssh_known_hosts:
+    file: .ssh/known_hosts

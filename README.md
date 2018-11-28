@@ -41,3 +41,7 @@ job('example') {
     }
 }
 ```
+
+If necessary known_hosts can be provided by mounting the hosts file at
+`/etc/ssh/ssh_known_hosts`. For this example just symlink your own known_hosts
+file to `localdev/.ssh/known_hosts`.
