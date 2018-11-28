@@ -11,5 +11,12 @@ services:
      - "8080:8080"
     environment:
       JENKINS_ADMIN_PASSWORD: admin
+      JENKINS_SSH_USER_NAME: jenkins
     volumes:
-      - ./volumes/job-dsl:/usr/share/jenkins/ref/jobs/seed-job/workspace:ro
+      - ./volumes/job_dsl:/usr/share/jenkins/ref/jobs/seed-job/workspace:ro
+    secrets:
+      - jenkins_ssh_key
+
+secrets:
+  jenkins_ssh_key:
+    file: .ssh/id

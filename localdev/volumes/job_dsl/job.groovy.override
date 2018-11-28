@@ -1,5 +1,9 @@
 job('hello-world') {
     description 'simple Hello World job, should be overriden'
+
+    wrappers {
+        sshAgent('ssh-credentials')
+    }
     steps {
           shell 'echo Hello World!'
     }
