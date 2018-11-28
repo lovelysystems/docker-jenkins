@@ -14,6 +14,7 @@ services:
       JENKINS_SSH_USER_NAME: jenkins
     volumes:
       - ./volumes/job_dsl:/usr/share/jenkins/ref/jobs/seed-job/workspace:ro
+      - /var/run/docker.sock:/var/run/docker.sock
     secrets:
       - jenkins_ssh_key
       - source: jenkins_ssh_known_hosts
