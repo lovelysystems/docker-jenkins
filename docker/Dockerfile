@@ -1,7 +1,7 @@
 # Build from latest LTS version
 FROM jenkins/jenkins:lts-alpine
-LABEL "maintainer"="Deposit Solutions"
-LABEL "github-url"="https://github.com/depositsolutions/jenkins-automation"
+LABEL "maintainer"="lovelysystems"
+LABEL "github-url"="https://github.com/lovelysystems/docker-jenkins"
 
 ARG httpProxy
 ARG noProxy
@@ -21,15 +21,13 @@ ENV DOWNLOAD_URL="https://download.docker.com/linux/static/stable/x86_64/docker-
 USER root
 
 # install docker client
-RUN apk --update add curl \
+RUN apk --update add curl sudo \
     && mkdir -p /tmp/download \
     && curl -L $DOWNLOAD_URL | tar -xz -C /tmp/download \
     && mv /tmp/download/docker/docker /usr/local/bin/ \
+    && echo "jenkins ALL=NOPASSWD: /usr/local/bin/docker" > /etc/sudoers.d/docker \
+    && chmod 0440 /etc/sudoers.d/docker \
     && rm -rf /tmp/download \
-    && rm -rf /var/cache/apk/*
-
-# install applications necessary for builds
-RUN apk --update add python3 \
     && rm -rf /var/cache/apk/*
 
 USER jenkins
