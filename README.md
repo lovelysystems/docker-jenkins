@@ -9,6 +9,12 @@ location: `/usr/share/jenkins/ref/jobs-seed-job/workspace/job.groovy.override`
 Install plugins by putting them into the `docker/plugin.txt` file. All the 
 referenced plugins are installed during the container build. 
 
+## Docker
+
+The docker client is installed inside the container. It'll try and connect with
+a docker socket at `/var/run/docker.sock`. The `jenkins` user calls docker with
+sudo allowing us to write to the socket.
+
 ## Configuration
 
 ### init scripts
