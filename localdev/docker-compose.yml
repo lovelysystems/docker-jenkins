@@ -12,6 +12,8 @@ services:
     environment:
       JENKINS_ADMIN_PASSWORD: admin
       JENKINS_SSH_USER_NAME: jenkins
+      JENKINS_DOCKER_USER_NAME: docker_user
+      JENKINS_DOCKER_USER_PASS: docker_pass
     volumes:
       - ./volumes/job_dsl:/usr/share/jenkins/ref/jobs/seed-job/workspace:ro
       - /var/run/docker.sock:/var/run/docker.sock

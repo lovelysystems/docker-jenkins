@@ -9,12 +9,6 @@ location: `/usr/share/jenkins/ref/jobs-seed-job/workspace/job.groovy.override`
 Install plugins by putting them into the `docker/plugin.txt` file. All the 
 referenced plugins are installed during the container build. 
 
-## Docker
-
-The docker client is installed inside the container. It'll try and connect with
-a docker socket at `/var/run/docker.sock`. The `jenkins` user calls docker with
-sudo allowing us to write to the socket.
-
 ## Configuration
 
 ### init scripts
@@ -51,3 +45,33 @@ job('example') {
 If necessary known_hosts can be provided by mounting the hosts file at
 `/etc/ssh/ssh_known_hosts`. For this example just symlink your own known_hosts
 file to `localdev/.ssh/known_hosts`.
+
+## Docker
+
+The docker client is installed inside the container. It'll try and connect with
+a docker socket at `/var/run/docker.sock`. The `jenkins` user calls docker with
+sudo allowing us to write to the socket.
+
+If it's necessary to pull image from a private docker repository, credentials
+for a user can be created by setting the `JENKINS_DOCKER_USER_NAME` and
+`JENKINS_DOCKER_USER_PASS` environment variables. The credentials can then be
+configured for docker inside the pipeline script.
+
+```job-dsl
+pipeline {
+    agent {
+      docker {
+            image 'my_organization/my_private_image:latest'
+            registryUrl 'https://registry.hub.docker.com'
+            registryCredentialsId 'docker-credentials'
+        }
+   }
+   stages {
+       stage('Build') {
+           steps {
+               sh 'echo Hello World!'
+           }
+       }
+   }
+}
+```

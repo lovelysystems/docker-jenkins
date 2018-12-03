@@ -18,10 +18,12 @@ pipelineJob('pipeline-test') {
             sandbox(true)
             script("""
                 pipeline {
-                   agent {
-                       docker {
-                           image 'alpine'
-                       }
+                    agent {
+                      docker {
+                            image 'my_organization/my_private_image:latest'
+                            registryUrl 'https://registry.hub.docker.com'
+                            registryCredentialsId 'docker-credentials'
+                        }
                    }
                    stages {
                        stage('Build') {

@@ -1,10 +1,11 @@
+credentials:2.1.18
+docker-workflow:1.17
 git:3.9.1
 github:1.29.3
 job-dsl:1.70
-matrix-auth:2.3
-startup-trigger:2.9.3
 mailer:1.22
-workflow-aggregator:2.6
+matrix-auth:2.3
 ssh-agent:1.17
 ssh:2.6.1
-docker-workflow:1.17
+startup-trigger:2.9.3
+workflow-aggregator:2.6
