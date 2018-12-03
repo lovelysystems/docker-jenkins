@@ -3,27 +3,15 @@ FROM jenkins/jenkins:lts-alpine
 LABEL "maintainer"="lovelysystems"
 LABEL "github-url"="https://github.com/lovelysystems/docker-jenkins"
 
-ARG httpProxy
-ARG noProxy
-
-ENV HTTPS_PROXY=${httpProxy} \
-    https_proxy=${httpProxy} \
-    HTTP_PROXY=${httpProxy} \
-    http_proxy=${httpProxy} \
-    ftp_proxy=${httpProxy} \
-    FTP_PROXY=${httpProxy} \
-    NO_PROXY=${noProxy} \
-    no_proxy=${noProxy}
-
-ARG DOCKER_CLI_VERSION="18.06.1-ce"
-ENV DOWNLOAD_URL="https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_CLI_VERSION.tgz"
+ENV DOCKER_CLI_VERSION="18.06.1-ce"
+ENV DOCKER_DOWNLOAD_URL="https://download.docker.com/linux/static/stable/x86_64/docker-$DOCKER_CLI_VERSION.tgz"
 
 USER root
 
 # install docker client
 RUN apk --update add curl sudo \
     && mkdir -p /tmp/download \
-    && curl -L $DOWNLOAD_URL | tar -xz -C /tmp/download \
+    && curl -L $DOCKER_DOWNLOAD_URL | tar -xz -C /tmp/download \
     && mkdir /opt \
     && mv /tmp/download/docker/docker /opt/ \
     && echo "jenkins ALL=NOPASSWD: /opt/docker" > /etc/sudoers.d/docker \
