@@ -14,6 +14,8 @@ services:
       JENKINS_SSH_USER_NAME: jenkins
       JENKINS_DOCKER_USER_NAME: docker_user
       JENKINS_DOCKER_USER_PASS: docker_pass
+      SLACK_TEAM_DOMAIN: "lovelysystems"
+      SLACK_TOKEN: "valid_slack_token"
     volumes:
       - ./volumes/job_dsl:/usr/share/jenkins/ref/jobs/seed-job/workspace:ro
       - /var/run/docker.sock:/var/run/docker.sock

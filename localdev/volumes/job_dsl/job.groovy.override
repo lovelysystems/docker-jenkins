@@ -1,6 +1,5 @@
 job('hello-world') {
     description 'simple Hello World job, should be overriden'
-
     wrappers {
         sshAgent('ssh-credentials')
     }
@@ -20,9 +19,10 @@ pipelineJob('pipeline-test') {
                 pipeline {
                     agent {
                       docker {
-                            image 'my_organization/my_private_image:latest'
+                            image 'library/alpine:latest'
                             registryUrl 'https://registry.hub.docker.com'
-                            registryCredentialsId 'docker-credentials'
+                            // public repo, so no credentials required
+                            // registryCredentialsId 'docker-credentials'
                         }
                    }
                    stages {
@@ -32,8 +32,17 @@ pipelineJob('pipeline-test') {
                            }
                        }
                    }
+                   post {
+                      always {
+                          slackSend(
+                              message: "Pipeline Test executed on Jenkins",
+                              color: "#FF0000",
+                              channel: "#general"
+                          )
+                      }
+                   }
                 }
-            """.stripIndent()) 
-         }
+            """.stripIndent())
+        }
     }
 }

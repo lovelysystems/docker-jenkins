@@ -1,0 +1,10 @@
+import jenkins.model.*
+
+def env = System.getenv()
+
+def slack = Jenkins.instance.getExtensionList('jenkins.plugins.slack.SlackNotifier$DescriptorImpl')[0]
+
+slack.teamDomain = env.SLACK_TEAM_DOMAIN
+slack.token = env.SLACK_TOKEN
+slack.baseUrl = env.SLACK_BASE_URL
+slack.save()
