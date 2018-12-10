@@ -1,6 +1,6 @@
 # Changes for docker-jenkins
 
-## unreleased
+## 2018-12-10 / 0.0.1
 
 ### Feature:
 
