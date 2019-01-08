@@ -1,6 +1,6 @@
 # Changes for docker-jenkins
 
-## unreleased
+## 2019-01-08 / 0.0.2
 
 ### Fix
 
