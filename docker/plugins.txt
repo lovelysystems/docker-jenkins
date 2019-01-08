@@ -7,6 +7,6 @@ mailer:1.22
 matrix-auth:2.3
 ssh-agent:1.17
 ssh:2.6.1
-startup-trigger:2.9.3
+startup-trigger-plugin:2.9.3
 workflow-aggregator:2.6
 slack:2.6

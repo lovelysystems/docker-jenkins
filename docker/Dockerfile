@@ -1,5 +1,5 @@
 # Build from latest LTS version
-FROM jenkins/jenkins:lts-alpine
+FROM jenkins/jenkins:2.157-alpine
 LABEL "maintainer"="lovelysystems"
 LABEL "github-url"="https://github.com/lovelysystems/docker-jenkins"
 

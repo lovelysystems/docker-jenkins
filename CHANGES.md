@@ -1,8 +1,16 @@
 # Changes for docker-jenkins
 
+## unreleased
+
+### Fix
+
+- docker security credentials are now updated upon startup when changed in env
+- nailed jenkins version in Dockerfile to have idempotent builds
+- upgraded jenkins base image to 2.157 which fixes 404 errors on build time
+
 ## 2018-12-10 / 0.0.1
 
 ### Feature:
 
- - Added Slack plugin
- - Initial setup
+- Added Slack plugin
+- Initial setup

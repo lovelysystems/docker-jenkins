@@ -4,6 +4,9 @@ version: '3.5'
 # IMPORTANT: you need to create the docker images first via gradle like this:
 # ./gradlew buildDockerImage
 
+volumes:
+  jenkins_home:
+
 services:
   jenkins:
     image: lovelysystems/docker-jenkins:dev
@@ -19,6 +22,7 @@ services:
     volumes:
       - ./volumes/job_dsl:/usr/share/jenkins/ref/jobs/seed-job/workspace:ro
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./volumes/jenkins_home:/var/jenkins_home
     secrets:
       - jenkins_ssh_key
       - source: jenkins_ssh_known_hosts
