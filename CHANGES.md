@@ -1,6 +1,6 @@
 # Changes for docker-jenkins
 
-## Unreleased
+## 2019-03-13 / 0.0.3
 
 ### Feature:
 
