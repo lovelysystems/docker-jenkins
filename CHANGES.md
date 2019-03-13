@@ -1,5 +1,12 @@
 # Changes for docker-jenkins
 
+## Unreleased
+
+### Feature:
+
+- Install tzdata package to support setting timezones using the `TZ` environment variable
+
+
 ## 2019-01-08 / 0.0.2
 
 ### Fix

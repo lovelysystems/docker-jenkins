@@ -8,8 +8,9 @@ ENV DOCKER_DOWNLOAD_URL="https://download.docker.com/linux/static/stable/x86_64/
 
 USER root
 
+# install tzdata for timezone support
 # install docker client
-RUN apk --update add curl sudo \
+RUN apk --update add curl sudo tzdata \
     && mkdir -p /tmp/download \
     && curl -L $DOCKER_DOWNLOAD_URL | tar -xz -C /tmp/download \
     && mkdir /opt \
