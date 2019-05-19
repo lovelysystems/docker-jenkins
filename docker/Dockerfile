@@ -8,9 +8,13 @@ ENV DOCKER_DOWNLOAD_URL="https://download.docker.com/linux/static/stable/x86_64/
 
 USER root
 
+
+
 # install tzdata for timezone support
 # install docker client
-RUN apk --update add curl sudo tzdata \
+# install aws-cli
+RUN apk --update add curl sudo tzdata python3 \
+    && pip3 install awscli \
     && mkdir -p /tmp/download \
     && curl -L $DOCKER_DOWNLOAD_URL | tar -xz -C /tmp/download \
     && mkdir /opt \
@@ -21,7 +25,7 @@ RUN apk --update add curl sudo tzdata \
     && rm -rf /var/cache/apk/*
 
 # Create docker shim
-COPY docker /usr/local/bin/docker
+COPY docker.sh /usr/local/bin/docker
 
 USER jenkins
 
