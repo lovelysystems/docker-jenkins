@@ -1,5 +1,12 @@
 # Changes for docker-jenkins
 
+## 2019-05-20 / 0.0.4
+
+### Feature:
+
+- Install aws cli to copy data to s3. The cli can be configured via ENVIRONMENT variables
+  see [aws doc](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
 ## 2019-03-13 / 0.0.3
 
 ### Feature:

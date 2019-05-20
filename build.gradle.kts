@@ -14,12 +14,6 @@ group = "com.lovelysystems"
 
 tasks {
 
-    val writeVersion by creating {
-        val out = file("VERSION.txt")
-        outputs.file(out)
-        out.writeText(project.version.toString())
-    }
-
     val localDevDown by creating {
         group = "Development"
         description = "Stops local development Docker containers"
