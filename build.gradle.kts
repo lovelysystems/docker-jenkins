@@ -4,7 +4,7 @@ plugins {
 
 lovely {
     gitProject()
-    dockerProject("lovelysystems/docker-jenkins")
+    dockerProject("ghcr.io/lovelysystems/docker-jenkins")
     with(dockerFiles) {
         from("docker") 
     }
