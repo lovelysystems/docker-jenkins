@@ -9,7 +9,7 @@ volumes:
 
 services:
   jenkins:
-    image: lovelysystems/docker-jenkins:dev
+    image: ghcr.io/lovelysystems/docker-jenkins:dev
     ports:
      - "8080:8080"
     environment:
